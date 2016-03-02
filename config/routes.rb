@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   # changed this to a singular resource so that the :id param is NOT in the url for security
   resource :cart, only: [:edit, :update, :destroy]
+  resources :line_items, only: [:create]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -17,14 +17,14 @@ class Product < ActiveRecord::Base
 
   validates_numericality_of :quantity, greater_than_or_equal_to: 0
 
- def self.search_by_name_or_description(string)
-   where("name LIKE ? OR description LIKE ?", "%#{string}%", "%#{string}%")
- end
+   def self.search_by_name_or_description(string)
+     where("name LIKE ? OR description LIKE ?", "%#{string}%", "%#{string}%")
+   end
 
   private
   
   # TODO: make sure this works
-  def :ensure_not_referenced_by_any_line_items
+  def ensure_not_referenced_by_any_line_items
     if line_items.empty? 
       return true
     else
