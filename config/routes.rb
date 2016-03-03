@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+
   get '/shop' => 'storefront#index'
   get '/about' => 'storefront#about'
+  get '/home' => 'storefront#home'
 
   devise_for :users
   namespace :admin do
@@ -9,11 +11,18 @@ Rails.application.routes.draw do
     resources :categories
   end
 
+  # changed this to a singular resource so that the :id param is NOT in the url for security
+  resource :cart, only: [:edit, :update, :destroy]
+  
+  # Regular plural resources! (either neither is plural or both are)
+  resources :line_items, only: [:create]
+  resources :orders, only: [:new, :create, :show]
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'storefront#index'
+  root 'storefront#home'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
