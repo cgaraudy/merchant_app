@@ -9,13 +9,13 @@ class OrdersController < ApplicationController
       return
     end
     
-  def show
-    # Deny access to orders of other users
-    @order = order.find(params[:id])
-  end  
-    
     @order = Order.new
   end
+  
+  def show
+    # Deny access to orders of other users
+    @order = Order.find(params[:id])
+  end  
 
 def create
     @order = current_user.orders.build(order_params)
@@ -38,7 +38,7 @@ def create
 private
 
 def order_params
-  params.require(:order).permit(:shipping_name, :shipping_name, :payment_type)
+  params.require(:order).permit(:shipping_name, :shipping_address, :payment_type)
 end
 
 end

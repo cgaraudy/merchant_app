@@ -15,7 +15,8 @@ Rails.application.routes.draw do
   resource :cart, only: [:edit, :update, :destroy]
   
   # Regular plural resources! (either neither is plural or both are)
-  resources :line_items, only: [:create]
+  resources :line_items, only: [:create, :destroy]
+  resources :line_items, only: [:create, :destroy, :update]
   resources :orders, only: [:new, :create, :show]
 
   # The priority is based upon order of creation: first created -> highest priority.
